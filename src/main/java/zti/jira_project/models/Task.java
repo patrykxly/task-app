@@ -3,12 +3,11 @@ package zti.jira_project.models;
 import jakarta.persistence.*;
 
 @Entity(name="task")
-@Table(name="Tasks", schema="public")
+@Table(name="tasks", schema="public")
 public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
     private String title;
     private String status;
     private String description;
