@@ -11,27 +11,52 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+/**
+ * Service class for managing tasks.
+ */
 @Service
 public class TaskService {
 
     private final TaskRepository taskRepository;
 
+    /**
+     * Constructs a TaskService with the given TaskRepository.
+     *
+     * @param taskRepository the task repository to be used by this service
+     */
     @Autowired
     public TaskService(TaskRepository taskRepository) {
         this.taskRepository = taskRepository;
     }
 
+    /**
+     * Retrieves all tasks.
+     *
+     * @return a list of all tasks converted to DTOs
+     */
     public List<TaskDTO> getAllTasks() {
         return taskRepository.findAll().stream()
                 .map(this::convertToDTO)
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Retrieves a task by its ID.
+     *
+     * @param id the ID of the task to retrieve
+     * @return an Optional containing the task DTO if found, otherwise empty
+     */
     public Optional<TaskDTO> getTaskById(Integer id) {
         return taskRepository.findById(id)
                 .map(this::convertToDTO);
     }
 
+    /**
+     * Creates a new task.
+     *
+     * @param taskDTO the task data to create
+     * @return the created task DTO
+     */
     public TaskDTO createTask(TaskDTO taskDTO) {
         Task task = convertToEntity(taskDTO);
         task.setStatus(Consts.STATUS.TO_DO);
@@ -39,6 +64,14 @@ public class TaskService {
         return convertToDTO(savedTask);
     }
 
+    /**
+     * Updates an existing task.
+     *
+     * @param id      the ID of the task to update
+     * @param taskDTO the updated task data
+     * @return the updated task DTO
+     * @throws IllegalArgumentException if no task is found with the given ID
+     */
     public TaskDTO updateTask(Integer id, TaskDTO taskDTO) {
         Task existingTask = taskRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Task not found with id: " + id));
@@ -47,6 +80,11 @@ public class TaskService {
         return convertToDTO(savedTask);
     }
 
+    /**
+     * Deletes a task by its ID.
+     *
+     * @param id the ID of the task to delete
+     */
     public void deleteTask(Integer id) {
         taskRepository.deleteById(id);
     }
