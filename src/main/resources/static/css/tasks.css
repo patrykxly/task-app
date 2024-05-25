@@ -1,0 +1,12 @@
+.table {
+    width: 100%;
+}
+
+.table th,
+.table td {
+    width: 33%;
+}
+
+.row {
+    margin: 0 0;
+}
