@@ -30,7 +30,7 @@ public class TaskControllerTest {
 
     @Test
     public void testGetAllTasks() throws Exception {
-        TaskDTO task = new TaskDTO(1, "Task 1", "Description", 1L, "To Do");
+        TaskDTO task = new TaskDTO(1, "Task 1", "Description", 1L, "To Do", "Major");
         when(taskService.getAllTasks()).thenReturn(Collections.singletonList(task));
 
         mockMvc.perform(get("/tasks")
@@ -41,7 +41,7 @@ public class TaskControllerTest {
 
     @Test
     public void testGetTaskById() throws Exception {
-        TaskDTO task = new TaskDTO(1, "Task 1", "Description", 1L, "To Do");
+        TaskDTO task = new TaskDTO(1, "Task 1", "Description", 1L, "To Do", "Major");
         when(taskService.getTaskById(anyInt())).thenReturn(Optional.of(task));
 
         mockMvc.perform(get("/tasks/1")
@@ -61,7 +61,7 @@ public class TaskControllerTest {
 
     @Test
     public void testCreateTask() throws Exception {
-        TaskDTO task = new TaskDTO(1, "Task 1", "Description", 1L, "To Do");
+        TaskDTO task = new TaskDTO(1, "Task 1", "Description", 1L, "To Do", "Major");
         when(taskService.createTask(any(TaskDTO.class))).thenReturn(task);
 
         String requestBody = "{\"title\":\"Task 1\",\"description\":\"Description\",\"userId\":1,\"status\":\"To Do\"}";
@@ -75,7 +75,7 @@ public class TaskControllerTest {
 
     @Test
     public void testUpdateTask() throws Exception {
-        TaskDTO task = new TaskDTO(1, "Updated Task", "Updated Description", 1L, "In Progress");
+        TaskDTO task = new TaskDTO(1, "Updated Task", "Updated Description", 1L, "In Progress", "Major");
         when(taskService.updateTask(anyInt(), any(TaskDTO.class))).thenReturn(task);
 
         String requestBody = "{\"title\":\"Updated Task\",\"description\":\"Updated Description\",\"userId\":1,\"status\":\"In Progress\"}";

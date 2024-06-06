@@ -105,7 +105,7 @@ const getTaskCardHTML = (task, assigneeEmail) => {
                 </div>
             </div>  
             <div class="card-body">
-                <p class="card-text">Status: ${task.status}</p>
+                <p class="card-text">Priority: ${task.priority}</p>
                 <p class="card-text">Assignee: ${assigneeEmail}</p>
                 <p class="card-text">Description: <br />${task.description}</p>
             </div>
@@ -144,6 +144,7 @@ const onFetchTaskDetailsFail = (error) => {
 const populateEditModal = (task) => {
     document.getElementById('editTaskId').value = task.id;
     document.getElementById('editTaskTitle').value = task.title;
+    document.getElementById('editTaskPriority').value = task.priority;
     document.getElementById('editTaskStatus').value = task.status;
     document.getElementById('editTaskDescription').value = task.description;
     document.getElementById('editTaskAssignee').value = task.userId;
@@ -158,7 +159,8 @@ document.getElementById('editTaskForm').addEventListener('submit', (event) => {
         title: document.getElementById('editTaskTitle').value,
         description: document.getElementById('editTaskDescription').value,
         userId: document.getElementById('editTaskAssignee').value,
-        status: document.getElementById('editTaskStatus').value
+        status: document.getElementById('editTaskStatus').value,
+        priority: document.getElementById('editTaskPriority').value
     };
 
     updateTask(taskId, taskData);
@@ -237,6 +239,7 @@ document.getElementById('createTaskForm').addEventListener('submit', (event) => 
 
     const taskData = {
         title: document.getElementById('taskTitle').value,
+        priority: document.getElementById('taskPriority').value,
         description: document.getElementById('taskDescription').value,
         userId: document.getElementById('taskAssignee').value
     };

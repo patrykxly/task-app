@@ -90,11 +90,11 @@ public class TaskService {
     }
 
     private TaskDTO convertToDTO(Task task) {
-        return new TaskDTO(task.getId(), task.getTitle(), task.getDescription(), task.getUserId(), task.getStatus());
+        return new TaskDTO(task.getId(), task.getTitle(), task.getDescription(), task.getUserId(), task.getStatus(), task.getPriority());
     }
 
     private Task convertToEntity(TaskDTO taskDTO) {
-        return new Task(taskDTO.getTitle(), taskDTO.getDescription(), taskDTO.getUserId(), taskDTO.getStatus());
+        return new Task(taskDTO.getTitle(), taskDTO.getDescription(), taskDTO.getUserId(), taskDTO.getStatus(), taskDTO.getPriority());
     }
 
     private Task updateTaskFromDTO(Task task, TaskDTO taskDTO) {
@@ -102,6 +102,7 @@ public class TaskService {
         task.setDescription(taskDTO.getDescription());
         task.setUserId(taskDTO.getUserId());
         task.setStatus(taskDTO.getStatus());
+        task.setPriority(taskDTO.getPriority());
         return task;
     }
 }

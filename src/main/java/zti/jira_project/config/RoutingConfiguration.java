@@ -56,6 +56,6 @@ public class RoutingConfiguration {
      */
     @GetMapping("/navbar")
     public String getNavbar() {
-        return "shared/navbar.html";
+        return "fragments/navbar.html";
     }
 }

@@ -16,7 +16,6 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/tasks")
 public class TaskController {
-
     private final TaskService taskService;
 
     /**

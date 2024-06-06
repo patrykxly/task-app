@@ -10,16 +10,18 @@ public class Task {
     private Integer id;
     private String title;
     private String status;
+    private String priority;
     private String description;
-    private Long userId; // Assuming userId is used to reference the user who owns the task
+    private Long userId;
 
     public Task() {}
 
-    public Task(String title, String description, Long userId, String status) {
+    public Task(String title, String description, Long userId, String status, String priority) {
         this.title = title;
         this.description = description;
         this.userId = userId;
         this.status = status;
+        this.priority = priority;
     }
 
     public Integer getId() {
@@ -44,6 +46,14 @@ public class Task {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getPriority() {
+        return priority;
+    }
+
+    public void setPriority(String priority) {
+        this.priority = priority;
     }
 
     public String getDescription() {
